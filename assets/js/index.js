@@ -1,4 +1,4 @@
-
+let startBtn = document.getElementById('start');
 
 var questions = [
     {
