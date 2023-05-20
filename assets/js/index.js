@@ -1,4 +1,12 @@
 let startBtn = document.getElementById('start');
+let startMenu = document.getElementById('start-menu');
+let timer = document.getElementById('timer');
+let quizSection = document.getElementById('quiz-section');
+let question = document.getElementById('question');
+let choice1 = document.getElementById('choice1');
+let choice2 = document.getElementById('choice2');
+let choice3 = document.getElementById('choice3');
+let choice4 = document.getElementById('choice4');
 
 var questions = [
     {
@@ -81,4 +89,96 @@ var questions = [
         choice4: 'Pokeballs',
         answer: 2,
     },
-]
+];
+
+score = 0;
+timerCnt = 300;
+questionCnt = 0;
+quizSection.style.display="none";
+
+function runQuiz() {
+    if(questionCnt === 10) {
+        return endQuiz();
+    }
+    timer.textContent = "Time Left: " + timerCnt;
+    question.textContent = questions[questionCnt].question;
+    choice1.textContent = questions[questionCnt].choice1;
+    choice2.textContent = questions[questionCnt].choice2;
+    choice3.textContent = questions[questionCnt].choice3;
+    choice4.textContent = questions[questionCnt].choice4;
+};
+
+startBtn.addEventListener('click', function () {
+    startTimer();
+    startMenu.style.display="none";
+    quizSection.style.display="block";
+    runQuiz();
+});
+
+function startTimer() {
+    let countdown = setInterval( function() {
+        timerCnt--;
+        timer.textContent = "Time Left: " + timerCnt;
+        if(timerCnt === 0) {
+            clearInterval(countdown);
+        }
+    }, 1000);
+};
+
+function manageChoice1() {
+    if (questions[questionCnt].answer === 1) {
+        questionCnt++;
+        score+=10;
+        console.log("Correct");
+    } else {
+        questionCnt++;
+        timerCnt-=10;
+        console.log("Wrong");
+    }
+    runQuiz();
+};
+function manageChoice2() {
+    if (questions[questionCnt].answer === 2) {
+        questionCnt++;
+        score+=10;
+        console.log("Correct");
+    } else {
+        questionCnt++;
+        timerCnt-=10;
+        console.log("Wrong");
+    }
+    runQuiz();
+};
+function manageChoice3() {
+    if (questions[questionCnt].answer === 3) {
+        questionCnt++;
+        score+=10;
+        console.log("Correct");
+    } else {
+        questionCnt++;
+        timerCnt-=10;
+        console.log("Wrong");
+    }
+    runQuiz();
+};
+function manageChoice4() {
+    if (questions[questionCnt].answer === 4) {
+        questionCnt++;
+        score+=10;
+        console.log("Correct");
+    } else {
+        questionCnt++;
+        timerCnt-=10;
+        console.log("Wrong");
+    }
+    runQuiz();
+};
+
+choice1.addEventListener('click', manageChoice1);
+choice2.addEventListener('click', manageChoice2);
+choice3.addEventListener('click', manageChoice3);
+choice4.addEventListener('click', manageChoice4);
+
+function endQuiz() {
+    quizSection.style.display="none"
+}
