@@ -213,6 +213,6 @@ function saveScore(e) {
     };
     storedUsers.push(newScore);
     localStorage.setItem("highscores", JSON.stringify(storedUsers));
-    window.location.href = "./highscores.html";
+    window.location.assign("./highscores.html");
 }
 scoreSubmit.addEventListener("submit", saveScore);
