@@ -98,8 +98,8 @@ var questions = [
 score = 0;
 timerCnt = 300;
 questionCnt = 0;
-quizSection.style.display="none";
-endMenu.style.display="none";
+quizSection.style.display = "none";
+endMenu.style.display = "none";
 let storedUsers;
 
 function onPageLoad() {
@@ -114,10 +114,11 @@ function onPageLoad() {
 onPageLoad();
 
 function runQuiz() {
-    if(questionCnt === 10 || timerCnt <= 0) {
+    if (questionCnt === 10 || timerCnt <= 0) {
         return endQuiz();
     }
-    timer.textContent = "Time Left: " + timerCnt;
+    timer.textContent = "Time Left: " +
+        `${Math.floor(timerCnt / 60)}:${(timerCnt % 60).toString().padStart(2, '0')}`;
     question.textContent = questions[questionCnt].question;
     choice1.textContent = questions[questionCnt].choice1;
     choice2.textContent = questions[questionCnt].choice2;
@@ -127,16 +128,17 @@ function runQuiz() {
 
 startBtn.addEventListener('click', function () {
     startTimer();
-    startMenu.style.display="none";
-    quizSection.style.display="block";
+    startMenu.style.display = "none";
+    quizSection.style.display = "block";
     runQuiz();
 });
 
 function startTimer() {
-    let countdown = setInterval( function() {
+    let countdown = setInterval(function () {
         timerCnt--;
-        timer.textContent = "Time Left: " + timerCnt;
-        if(timerCnt <= 0) {
+        timer.textContent = "Time Left: " +
+            `${Math.floor(timerCnt / 60)}:${(timerCnt % 60).toString().padStart(2, '0')}`;
+        if (timerCnt <= 0) {
             clearInterval(countdown);
             endQuiz();
         }
@@ -146,11 +148,11 @@ function startTimer() {
 function manageChoice1() {
     if (questions[questionCnt].answer === 1) {
         questionCnt++;
-        score+=10;
+        score += 10;
         console.log("Correct");
     } else {
         questionCnt++;
-        timerCnt-=10;
+        timerCnt -= 10;
         console.log("Wrong");
     }
     runQuiz();
@@ -158,11 +160,11 @@ function manageChoice1() {
 function manageChoice2() {
     if (questions[questionCnt].answer === 2) {
         questionCnt++;
-        score+=10;
+        score += 10;
         console.log("Correct");
     } else {
         questionCnt++;
-        timerCnt-=10;
+        timerCnt -= 10;
         console.log("Wrong");
     }
     runQuiz();
@@ -170,11 +172,11 @@ function manageChoice2() {
 function manageChoice3() {
     if (questions[questionCnt].answer === 3) {
         questionCnt++;
-        score+=10;
+        score += 10;
         console.log("Correct");
     } else {
         questionCnt++;
-        timerCnt-=10;
+        timerCnt -= 10;
         console.log("Wrong");
     }
     runQuiz();
@@ -182,11 +184,11 @@ function manageChoice3() {
 function manageChoice4() {
     if (questions[questionCnt].answer === 4) {
         questionCnt++;
-        score+=10;
+        score += 10;
         console.log("Correct");
     } else {
         questionCnt++;
-        timerCnt-=10;
+        timerCnt -= 10;
         console.log("Wrong");
     }
     runQuiz();
@@ -198,8 +200,8 @@ choice3.addEventListener('click', manageChoice3);
 choice4.addEventListener('click', manageChoice4);
 
 function endQuiz() {
-    quizSection.style.display="none";
-    endMenu.style.display="flex";
+    quizSection.style.display = "none";
+    endMenu.style.display = "flex";
     console.log(score);
 };
 
