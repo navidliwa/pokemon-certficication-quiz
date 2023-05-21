@@ -7,6 +7,10 @@ let choice1 = document.getElementById('choice1');
 let choice2 = document.getElementById('choice2');
 let choice3 = document.getElementById('choice3');
 let choice4 = document.getElementById('choice4');
+let scoreSubmit = document.getElementById('score-submit');
+let finalScore = document.getElementById('final-score');
+let initials = document.getElementById('initials');
+let endMenu = document.getElementById('end-menu');
 
 var questions = [
     {
@@ -95,6 +99,19 @@ score = 0;
 timerCnt = 300;
 questionCnt = 0;
 quizSection.style.display="none";
+endMenu.style.display="none";
+let storedUsers;
+
+function onPageLoad() {
+    if (storedUsers = JSON.parse(localStorage.getItem("highscores")) === null) {
+        storedUsers = [];
+    } else {
+        storedUsers = JSON.parse(localStorage.getItem("highscores"))
+    };
+    console.log(storedUsers);
+}
+
+onPageLoad();
 
 function runQuiz() {
     if(questionCnt === 10) {
@@ -180,5 +197,19 @@ choice3.addEventListener('click', manageChoice3);
 choice4.addEventListener('click', manageChoice4);
 
 function endQuiz() {
-    quizSection.style.display="none"
+    quizSection.style.display="none";
+    endMenu.style.display="flex";
+    console.log(score);
+};
+
+function saveScore(e) {
+    e.preventDefault();
+    newScore = {
+        user: initials.value,
+        userScore: score
+    };
+    storedUsers.push(newScore);
+    localStorage.setItem("highscores", JSON.stringify(storedUsers));
+    window.location.href = "../../highscores.html";
 }
+scoreSubmit.addEventListener("submit", saveScore);

@@ -3,7 +3,7 @@ body {
     margin: 0px;
 }
 
-#start-menu {
+#start-menu, #end-menu {
     display: flex;
     justify-content: center;
     align-items: center;
