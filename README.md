@@ -2,7 +2,7 @@
 
 This project lets you test your pokemon knowledge through a 10 question quiz!
 
-[Test your pokemon knowledge by clicking here!]()
+[Test your pokemon knowledge by clicking here!](https://navidliwa.github.io/pokemon-certficication-quiz/)
 
 ## Features
 
