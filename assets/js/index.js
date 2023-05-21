@@ -114,7 +114,7 @@ function onPageLoad() {
 onPageLoad();
 
 function runQuiz() {
-    if(questionCnt === 10) {
+    if(questionCnt === 10 || timerCnt <= 0) {
         return endQuiz();
     }
     timer.textContent = "Time Left: " + timerCnt;
@@ -136,8 +136,9 @@ function startTimer() {
     let countdown = setInterval( function() {
         timerCnt--;
         timer.textContent = "Time Left: " + timerCnt;
-        if(timerCnt === 0) {
+        if(timerCnt <= 0) {
             clearInterval(countdown);
+            endQuiz();
         }
     }, 1000);
 };

@@ -21,7 +21,7 @@ button:hover {
     background-color: rgb(129, 129, 129);
 }
 
-#quiz-section, #quiz {
+#quiz-section, #quiz, #scoresPage {
     height: 100%;
     display: flex;
     flex-direction: column;
